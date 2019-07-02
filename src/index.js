@@ -1,12 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import store from "./store";
+import App from "./components/app";
+import ErrorBoundry from "./components/error-boundry";
+import { YoutubeServiceProvider } from "./components/youtube-service-context";
+import YoutubeService from "./services/youtube-service";
+const youtubeService = new YoutubeService();
+ReactDOM.render(
+  <Provider store={store}>
+    <ErrorBoundry>
+      <YoutubeServiceProvider value={youtubeService}>
+        <Router>
+          <App />
+        </Router>
+      </YoutubeServiceProvider>
+    </ErrorBoundry>
+  </Provider>,
+  document.getElementById("root")
+);
