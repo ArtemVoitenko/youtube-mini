@@ -22,4 +22,4 @@ class SearchResults extends Component {
   }
 }
 
-export default SearchResults;
+export default connect(mapStateToProps)(SearchResults);
