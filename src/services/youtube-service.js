@@ -1,7 +1,7 @@
 const axios = require("axios");
 class YoutubeService {
   _apiSearchBase =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&type=video&key=AIzaSyCQNj-pElIywgWZzO4dl9vjocVr_KO0WZM&q=";
+    "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&type=video&key=AIzaSyCdB1wyB8GzS0At7xWSKldGm7O7oxJiNZ0&q=";
 
   requestVideos = query => {
     return axios({

@@ -3,7 +3,7 @@ import React from "react";
 const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo }) => {
   const watchedVideos = JSON.parse(localStorage.getItem("watchedVideos"));
   const renderItems = () => {
-    return watchedVideos.map(video => {
+    return [...watchedVideos].reverse().map(video => {
       return (
         <li
           key={video.id}
@@ -14,6 +14,7 @@ const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo }) => {
         >
           <img src={video.thumb} alt={video.title} className="watched__thumb" />
           <p className="watched__title">{video.title}</p>
+
           <button
             className="watched__remove"
             onClick={() => {

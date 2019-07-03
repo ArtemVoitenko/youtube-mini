@@ -12,18 +12,18 @@ class MainPage extends Component {
     this.props.setSearchResults(searchResults);
   };
   onPlayVideo = videoInfo => {
-    this.props.playVideo({ videoInfo });
+    this.props.playVideo(videoInfo.id);
     this.setPlayedVideoToStorage(videoInfo);
   };
 
   setPlayedVideoToStorage = videoInfo => {
     const videosInStorage = JSON.parse(localStorage.getItem("watchedVideos"));
     const isVideoExists = this.isElementExists(videoInfo, videosInStorage);
-    if (isVideoExists !== -1) {
+    if (isVideoExists != -1) {
       return;
     } else {
       if (videosInStorage && videosInStorage.length >= 5) {
-        const cutVideoList = videosInStorage.slice(0, 4);
+        const cutVideoList = videosInStorage.slice(1, 5);
         this.setItemsToLocalStorage(videoInfo, cutVideoList);
       } else if (videosInStorage && videosInStorage.length > 0) {
         this.setItemsToLocalStorage(videoInfo, videosInStorage);
@@ -49,9 +49,22 @@ class MainPage extends Component {
       JSON.stringify([...prevItems, newItem])
     );
   };
+  removeWatchedVideo = id => {
+    const videosInStorage = JSON.parse(localStorage.getItem("watchedVideos"));
+    const removeVideoIdx = this.findVideoById(videosInStorage, id);
+    const newVideoList = [
+      ...videosInStorage.slice(0, removeVideoIdx),
+      ...videosInStorage.slice(removeVideoIdx + 1)
+    ];
+    localStorage.setItem("watchedVideos", JSON.stringify(newVideoList));
+  };
+  findVideoById = (videos, id) => {
+    return videos.findIndex(item => {
+      return item.id === id;
+    });
+  };
   render() {
     const { searchResults, playVideo, playVideoId } = this.props;
-    // const activeVideo = activeVideoId ? activeVideoId.id : null;
     const showResults = searchResults ? (
       <SearchResults results={searchResults} playVideo={this.onPlayVideo} />
     ) : null;
@@ -59,12 +72,16 @@ class MainPage extends Component {
       <Fragment>
         <Search onSearch={this.onSearch} />
         {showResults}
-        <Sidebar onPlayWatchedVideo={playVideo} />
+        <Sidebar
+          onPlayWatchedVideo={playVideo}
+          removeWatchedVideo={this.removeWatchedVideo}
+        />
         <VideoPlayer videoId={playVideoId} />
       </Fragment>
     );
   }
 }
+
 const mapStateToProps = ({ searchResults, playVideoId }) => {
   return {
     searchResults,
