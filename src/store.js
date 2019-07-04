@@ -1,7 +1,9 @@
-import { createStore } from "redux";
-import { reducer } from "./reducer";
+import { IntlReducer as Intl, IntlProvider } from "react-redux-multilingual";
+import { createStore, combineReducers } from "redux";
+import { reducer } from "./reducers/reducer";
+let reducers = combineReducers(Object.assign({ reducer }, { Intl }));
 const store = createStore(
-  reducer,
+  reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 export default store;

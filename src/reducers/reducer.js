@@ -3,7 +3,8 @@ const initialState = {
   searchResults: null,
   playVideoInfo: null,
   playVideoId: null,
-  watchedVideos: null
+  watchedVideos: null,
+  Intl: { locale: null }
 };
 export const reducer = (state = initialState, action) => {
   switch (action.type) {

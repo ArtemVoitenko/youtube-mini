@@ -92,7 +92,9 @@ class MainPage extends Component {
   }
 }
 
-const mapStateToProps = ({ searchResults, playVideoId, watchedVideos }) => {
+const mapStateToProps = ({
+  reducer: { searchResults, playVideoId, watchedVideos }
+}) => {
   return {
     searchResults,
     playVideoId,
