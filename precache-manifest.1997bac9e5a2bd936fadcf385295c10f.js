@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "31abe66bb82b73cfb470f51293e82aac",
+    "revision": "37a9f3cb1b0f6f6d63ecd94d1a9de808",
     "url": "/youtube-mini/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/youtube-mini/static/css/2.4fc8fa59.chunk.css"
   },
   {
-    "revision": "0399a362b2284457db87",
+    "revision": "e355a07584a1ed4f5186",
     "url": "/youtube-mini/static/css/main.0dbc3613.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/youtube-mini/static/js/2.9eba36de.chunk.js"
   },
   {
-    "revision": "0399a362b2284457db87",
-    "url": "/youtube-mini/static/js/main.1f799f7e.chunk.js"
+    "revision": "e355a07584a1ed4f5186",
+    "url": "/youtube-mini/static/js/main.01e8756d.chunk.js"
   },
   {
     "revision": "5cbd471c8a459201204c",

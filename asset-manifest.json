@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/youtube-mini/static/css/main.0dbc3613.chunk.css",
-    "main.js": "/youtube-mini/static/js/main.1f799f7e.chunk.js",
+    "main.js": "/youtube-mini/static/js/main.01e8756d.chunk.js",
     "runtime~main.js": "/youtube-mini/static/js/runtime~main.6c235e43.js",
     "static/css/2.4fc8fa59.chunk.css": "/youtube-mini/static/css/2.4fc8fa59.chunk.css",
     "static/js/2.9eba36de.chunk.js": "/youtube-mini/static/js/2.9eba36de.chunk.js",
     "index.html": "/youtube-mini/index.html",
-    "precache-manifest.f487662fec362f4b5a2bdb0f27249adf.js": "/youtube-mini/precache-manifest.f487662fec362f4b5a2bdb0f27249adf.js",
+    "precache-manifest.1997bac9e5a2bd936fadcf385295c10f.js": "/youtube-mini/precache-manifest.1997bac9e5a2bd936fadcf385295c10f.js",
     "service-worker.js": "/youtube-mini/service-worker.js",
     "static/media/styles.scss": "/youtube-mini/static/media/OpenSans-Regular.5a798cda.ttf",
     "static/media/sprite.svg": "/youtube-mini/static/media/sprite.ebbcac6c.svg"
