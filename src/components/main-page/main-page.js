@@ -2,11 +2,11 @@ import React, { Fragment, Component } from "react";
 import Search from "../search";
 import SearchResults from "../search-results";
 import { connect } from "react-redux";
-import { dispatch } from "react-redux";
 import { videosReturned, playVideo, getWatchedVideos } from "../../actions";
 import Sidebar from "../sidebar";
 import VideoPlayer from "../video-player";
 import { IntlActions } from "react-redux-multilingual";
+import LanguagesDropdown from "../languages-dropdown";
 
 class MainPage extends Component {
   componentDidMount() {
@@ -75,7 +75,13 @@ class MainPage extends Component {
     });
   };
   render() {
-    const { searchResults, playVideo, playVideoId, watchedVideos } = this.props;
+    const {
+      searchResults,
+      playVideo,
+      playVideoId,
+      watchedVideos,
+      lang
+    } = this.props;
 
     const showResults = searchResults ? (
       <SearchResults results={searchResults} playVideo={this.onPlayVideo} />
@@ -83,6 +89,7 @@ class MainPage extends Component {
     return (
       <Fragment>
         <Search onSearch={this.onSearch} />
+        <LanguagesDropdown activeLanguage={lang} />
         {showResults}
         <Sidebar
           onPlayWatchedVideo={playVideo}
