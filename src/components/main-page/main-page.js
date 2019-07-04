@@ -16,6 +16,7 @@ class MainPage extends Component {
   };
   onPlayVideo = videoInfo => {
     this.props.playVideo(videoInfo.id);
+    this.props.setSearchResults(null);
     this.setPlayedVideoToStorage(videoInfo);
   };
   getVideosFromStorage = () => {

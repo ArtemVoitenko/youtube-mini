@@ -28,6 +28,7 @@ class Search extends Component {
           type="text"
           className="search__input"
           onChange={this.onSearchInput}
+          onFocus={this.onSearchInput}
           value={query}
         />
       </div>
