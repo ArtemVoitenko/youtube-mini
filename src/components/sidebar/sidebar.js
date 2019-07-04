@@ -5,14 +5,15 @@ const Sidebar = ({
   removeWatchedVideo,
   onPlayWatchedVideo,
   watchedVideos,
-  translate
+  translate,
+  activeVideo
 }) => {
   const renderItems = () => {
     return [...watchedVideos].reverse().map(video => {
       return (
         <li
           key={video.id}
-          className="watched__item"
+          className={`watched__item ${activeVideo == video.id ? "active" : ""}`}
           onClick={() => {
             onPlayWatchedVideo(video.id);
           }}
@@ -36,7 +37,11 @@ const Sidebar = ({
   return (
     <div className="sidebar">
       <p className="sidebar__title">{translate("watchedTitle")}</p>
-      {watchedVideos ? <ul className="watched">{renderItems()}</ul> : null}
+      {watchedVideos ? (
+        <ul className="watched">{renderItems()}</ul>
+      ) : (
+        <p className="sidebar__message">{translate("watchedEmpty")}</p>
+      )}
     </div>
   );
 };

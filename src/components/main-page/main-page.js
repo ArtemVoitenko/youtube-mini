@@ -104,6 +104,7 @@ class MainPage extends Component {
               onPlayWatchedVideo={playVideo}
               removeWatchedVideo={this.removeWatchedVideo}
               watchedVideos={watchedVideos}
+              activeVideo={playVideoId}
             />
 
             <VideoPlayer videoId={playVideoId} />

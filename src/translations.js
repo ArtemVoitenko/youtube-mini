@@ -4,6 +4,7 @@ const translations = {
     messages: {
       searchPlaceholder: "Type at least 4 symbols to search",
       watchedTitle: "Watched videos",
+      watchedEmpty: "List is empty",
       play: "Play",
       remove: "Remove",
       locale: "/"
@@ -14,6 +15,7 @@ const translations = {
     messages: {
       searchPlaceholder: "Введите минимум 4 символа для поиска",
       watchedTitle: "Просмотренные видео",
+      watchedEmpty: "Список пуст",
       play: "Просмотр",
       remove: "Удалить",
       locale: "/ru"
