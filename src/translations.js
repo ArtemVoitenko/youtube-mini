@@ -1,20 +1,22 @@
 const translations = {
   en: {
-    locale: "en",
+    locale: "/",
     messages: {
       searchPlaceholder: "Type at least 4 symbols to search",
       watchedTitle: "Watched videos",
       play: "Play",
-      remove: "Remove"
+      remove: "Remove",
+      locale: "/"
     }
   },
   ru: {
-    locale: "ru",
+    locale: "/ru",
     messages: {
       searchPlaceholder: "Введите минимум 4 символа для поиска",
       watchedTitle: "Просмотренные видео",
       play: "Просмотр",
-      remove: "Удалить"
+      remove: "Удалить",
+      locale: "/ru"
     }
   }
 };

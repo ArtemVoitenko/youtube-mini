@@ -6,10 +6,13 @@ import { dispatch } from "react-redux";
 import { videosReturned, playVideo, getWatchedVideos } from "../../actions";
 import Sidebar from "../sidebar";
 import VideoPlayer from "../video-player";
+import { IntlActions } from "react-redux-multilingual";
 
 class MainPage extends Component {
   componentDidMount() {
-    this.props.saveWatched(this.getVideosFromStorage());
+    const { saveWatched, setLocale, lang } = this.props;
+    saveWatched(this.getVideosFromStorage());
+    setLocale(lang);
   }
   onSearch = searchResults => {
     this.props.setSearchResults(searchResults);
@@ -111,6 +114,9 @@ const mapDispatchToProps = dispatch => {
     },
     saveWatched: watchedVideos => {
       dispatch(getWatchedVideos(watchedVideos));
+    },
+    setLocale: locale => {
+      dispatch(IntlActions.setLocale(locale));
     }
   };
 };
