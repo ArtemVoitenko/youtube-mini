@@ -10,3 +10,6 @@ export const playVideo = videoInfo => {
     payload: videoInfo
   };
 };
+export const getWatchedVideos = watchedVideos => {
+  return { type: "GET_WATCHED_VIDEOS", payload: watchedVideos };
+};

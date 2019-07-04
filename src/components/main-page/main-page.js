@@ -3,11 +3,14 @@ import Search from "../search";
 import SearchResults from "../search-results";
 import { connect } from "react-redux";
 import { dispatch } from "react-redux";
-import { videosReturned, playVideo } from "../../actions";
+import { videosReturned, playVideo, getWatchedVideos } from "../../actions";
 import Sidebar from "../sidebar";
 import VideoPlayer from "../video-player";
 
 class MainPage extends Component {
+  componentDidMount() {
+    this.props.saveWatched(this.getVideosFromStorage());
+  }
   onSearch = searchResults => {
     this.props.setSearchResults(searchResults);
   };
@@ -15,11 +18,13 @@ class MainPage extends Component {
     this.props.playVideo(videoInfo.id);
     this.setPlayedVideoToStorage(videoInfo);
   };
-
+  getVideosFromStorage = () => {
+    return JSON.parse(localStorage.getItem("watchedVideos"));
+  };
   setPlayedVideoToStorage = videoInfo => {
-    const videosInStorage = JSON.parse(localStorage.getItem("watchedVideos"));
+    const videosInStorage = this.getVideosFromStorage();
     const isVideoExists = this.isElementExists(videoInfo, videosInStorage);
-    if (isVideoExists != -1) {
+    if (isVideoExists) {
       return;
     } else {
       if (videosInStorage && videosInStorage.length >= 5) {
@@ -30,6 +35,7 @@ class MainPage extends Component {
       } else {
         this.setItemsToLocalStorage(videoInfo);
       }
+      this.props.saveWatched(this.getVideosFromStorage());
     }
   };
 
@@ -38,7 +44,7 @@ class MainPage extends Component {
       const idx = storageItems.findIndex(item => {
         return item.id === element.id;
       });
-      return idx;
+      return idx != -1 ? true : false;
     } else {
       return false;
     }
@@ -50,13 +56,14 @@ class MainPage extends Component {
     );
   };
   removeWatchedVideo = id => {
-    const videosInStorage = JSON.parse(localStorage.getItem("watchedVideos"));
+    const videosInStorage = this.getVideosFromStorage();
     const removeVideoIdx = this.findVideoById(videosInStorage, id);
     const newVideoList = [
       ...videosInStorage.slice(0, removeVideoIdx),
       ...videosInStorage.slice(removeVideoIdx + 1)
     ];
     localStorage.setItem("watchedVideos", JSON.stringify(newVideoList));
+    this.props.saveWatched(newVideoList);
   };
   findVideoById = (videos, id) => {
     return videos.findIndex(item => {
@@ -64,7 +71,8 @@ class MainPage extends Component {
     });
   };
   render() {
-    const { searchResults, playVideo, playVideoId } = this.props;
+    const { searchResults, playVideo, playVideoId, watchedVideos } = this.props;
+
     const showResults = searchResults ? (
       <SearchResults results={searchResults} playVideo={this.onPlayVideo} />
     ) : null;
@@ -75,6 +83,7 @@ class MainPage extends Component {
         <Sidebar
           onPlayWatchedVideo={playVideo}
           removeWatchedVideo={this.removeWatchedVideo}
+          watchedVideos={watchedVideos}
         />
         <VideoPlayer videoId={playVideoId} />
       </Fragment>
@@ -82,10 +91,11 @@ class MainPage extends Component {
   }
 }
 
-const mapStateToProps = ({ searchResults, playVideoId }) => {
+const mapStateToProps = ({ searchResults, playVideoId, watchedVideos }) => {
   return {
     searchResults,
-    playVideoId
+    playVideoId,
+    watchedVideos
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -95,6 +105,9 @@ const mapDispatchToProps = dispatch => {
     },
     playVideo: videoInfo => {
       dispatch(playVideo(videoInfo));
+    },
+    saveWatched: watchedVideos => {
+      dispatch(getWatchedVideos(watchedVideos));
     }
   };
 };

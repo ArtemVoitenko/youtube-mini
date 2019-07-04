@@ -1,7 +1,6 @@
 import React from "react";
 
-const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo }) => {
-  const watchedVideos = JSON.parse(localStorage.getItem("watchedVideos"));
+const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo, watchedVideos }) => {
   const renderItems = () => {
     return [...watchedVideos].reverse().map(video => {
       return (
@@ -17,7 +16,8 @@ const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo }) => {
 
           <button
             className="watched__remove"
-            onClick={() => {
+            onClick={e => {
+              e.stopPropagation();
               removeWatchedVideo(video.id);
             }}
           >

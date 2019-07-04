@@ -2,7 +2,8 @@ const initialState = {
   test: "",
   searchResults: null,
   playVideoInfo: null,
-  playVideoId: null
+  playVideoId: null,
+  watchedVideos: null
 };
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,6 +24,11 @@ export const reducer = (state = initialState, action) => {
         playVideoId: action.payload
       };
     }
+    case "GET_WATCHED_VIDEOS":
+      return {
+        ...state,
+        watchedVideos: action.payload
+      };
     default:
       return state;
   }
