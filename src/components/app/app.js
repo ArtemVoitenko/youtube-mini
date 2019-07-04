@@ -13,11 +13,11 @@ class App extends Component {
     const activeLanguage = JSON.parse(localStorage.getItem("lang"));
     const { history } = this.props;
     if (!activeLanguage) {
-      history.push("/langs");
+      history.push("/youtube-mini/langs/");
     } else if (activeLanguage == "ru") {
-      history.push("/ru");
+      history.push("/youtube-mini/ru");
     } else {
-      history.push("/");
+      history.push("/youtube-mini");
     }
   };
   render() {
@@ -25,19 +25,19 @@ class App extends Component {
       <Fragment>
         <Route
           exact
-          path={"/ru"}
+          path={"/youtube-mini/ru"}
           render={() => {
             return <MainPage lang="ru" />;
           }}
         />
         <Route
           exact
-          path={"/"}
+          path={"/youtube-mini"}
           render={() => {
             return <MainPage lang="en" />;
           }}
         />
-        <Route exact path={"/langs"} component={LanguagesPage} />
+        <Route exact path={"/youtube-mini/langs"} component={LanguagesPage} />
       </Fragment>
     );
   }

@@ -43,7 +43,7 @@ export default class LanguagesDropdown extends Component {
             className="languages__link"
             onClick={this.setLanguageToStorage}
             data-locale="ru"
-            to="/ru"
+            to="/youtube-mini/ru"
           >
             <Icon data-locale="ru" iconClass="languages__icon" icon="ru" /> ru
           </Link>
@@ -51,7 +51,7 @@ export default class LanguagesDropdown extends Component {
             className="languages__link"
             onClick={this.setLanguageToStorage}
             data-locale="en"
-            to="/"
+            to="/youtube-mini"
           >
             <Icon data-locale="en" iconClass="languages__icon" icon="en" /> en
           </Link>

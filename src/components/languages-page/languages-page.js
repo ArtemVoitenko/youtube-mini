@@ -4,7 +4,11 @@ import Icon from "../icon";
 import "./languages-page.scss";
 const LanguagesPage = () => {
   const setLanguageToStorage = e => {
-    const locale = e.target.dataset.locale;
+    let target = e.target;
+    while (!target.dataset.locale) {
+      target = target.parentNode;
+    }
+    const locale = target.dataset.locale;
     localStorage.setItem("lang", JSON.stringify(locale));
   };
   return (
@@ -13,7 +17,7 @@ const LanguagesPage = () => {
         className="languages-block__link"
         onClick={setLanguageToStorage}
         data-locale="ru"
-        to="/ru"
+        to="/youtube-mini/ru"
       >
         <Icon data-locale="ru" iconClass="languages-block__icon" icon="ru" />{" "}
         Russian
@@ -22,7 +26,7 @@ const LanguagesPage = () => {
         className="languages-block__link"
         onClick={setLanguageToStorage}
         data-locale="en"
-        to="/"
+        to="/youtube-mini"
       >
         <Icon data-locale="en" iconClass="languages-block__icon" icon="en" />{" "}
         English
