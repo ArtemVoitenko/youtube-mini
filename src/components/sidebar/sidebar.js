@@ -1,6 +1,11 @@
 import React from "react";
-
-const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo, watchedVideos }) => {
+import { withTranslate } from "react-redux-multilingual";
+const Sidebar = ({
+  removeWatchedVideo,
+  onPlayWatchedVideo,
+  watchedVideos,
+  translate
+}) => {
   const renderItems = () => {
     return [...watchedVideos].reverse().map(video => {
       return (
@@ -21,7 +26,7 @@ const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo, watchedVideos }) => {
               removeWatchedVideo(video.id);
             }}
           >
-            remove
+            {translate("remove")}
           </button>
         </li>
       );
@@ -29,9 +34,10 @@ const Sidebar = ({ removeWatchedVideo, onPlayWatchedVideo, watchedVideos }) => {
   };
   return (
     <div className="sidebar">
+      <p className="sidebar__title">{translate("watchedTitle")}</p>
       {watchedVideos ? <ul className="watched">{renderItems()}</ul> : null}
     </div>
   );
 };
 
-export default Sidebar;
+export default withTranslate(Sidebar);

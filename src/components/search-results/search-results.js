@@ -1,6 +1,7 @@
 import React from "react";
 import SearchResultsItem from "../search-results-item/search-results-item";
 
+import { withTranslate } from "react-redux-multilingual";
 const SearchResults = ({ results, playVideo }) => {
   const renderResults = () => {
     return results.map(video => {

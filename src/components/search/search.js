@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { directive } from "@babel/types";
+
+import { withTranslate } from "react-redux-multilingual";
 import { withYoutubeService } from "../hoc";
 class Search extends Component {
   state = {
@@ -21,6 +22,7 @@ class Search extends Component {
     return this.props.youtubeService.requestVideos(query);
   };
   render() {
+    const { translate } = this.props;
     const { query } = this.state;
     return (
       <div className="search">
@@ -30,10 +32,11 @@ class Search extends Component {
           onChange={this.onSearchInput}
           onFocus={this.onSearchInput}
           value={query}
+          placeholder={translate("searchPlaceholder")}
         />
       </div>
     );
   }
 }
 
-export default withYoutubeService()(Search);
+export default withYoutubeService()(withTranslate(Search));
