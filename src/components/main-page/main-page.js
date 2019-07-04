@@ -1,12 +1,11 @@
 import React, { Fragment, Component } from "react";
-import Search from "../search";
-import SearchResults from "../search-results";
 import { connect } from "react-redux";
 import { videosReturned, playVideo, getWatchedVideos } from "../../actions";
 import Sidebar from "../sidebar";
 import VideoPlayer from "../video-player";
 import { IntlActions } from "react-redux-multilingual";
-import LanguagesDropdown from "../languages-dropdown";
+import Header from "../header";
+import "./main-page.scss";
 
 class MainPage extends Component {
   componentDidMount() {
@@ -14,17 +13,17 @@ class MainPage extends Component {
     saveWatched(this.getVideosFromStorage());
     setLocale(lang);
   }
+
   onSearch = searchResults => {
     this.props.setSearchResults(searchResults);
   };
+
   onPlayVideo = videoInfo => {
     this.props.playVideo(videoInfo.id);
     this.props.setSearchResults(null);
     this.setPlayedVideoToStorage(videoInfo);
   };
-  getVideosFromStorage = () => {
-    return JSON.parse(localStorage.getItem("watchedVideos"));
-  };
+
   setPlayedVideoToStorage = videoInfo => {
     const videosInStorage = this.getVideosFromStorage();
     const isVideoExists = this.isElementExists(videoInfo, videosInStorage);
@@ -43,22 +42,6 @@ class MainPage extends Component {
     }
   };
 
-  isElementExists = (element, storageItems) => {
-    if (storageItems) {
-      const idx = storageItems.findIndex(item => {
-        return item.id === element.id;
-      });
-      return idx != -1 ? true : false;
-    } else {
-      return false;
-    }
-  };
-  setItemsToLocalStorage = (newItem, prevItems = []) => {
-    localStorage.setItem(
-      "watchedVideos",
-      JSON.stringify([...prevItems, newItem])
-    );
-  };
   removeWatchedVideo = id => {
     const videosInStorage = this.getVideosFromStorage();
     const removeVideoIdx = this.findVideoById(videosInStorage, id);
@@ -69,11 +52,35 @@ class MainPage extends Component {
     localStorage.setItem("watchedVideos", JSON.stringify(newVideoList));
     this.props.saveWatched(newVideoList);
   };
+
+  getVideosFromStorage = () => {
+    return JSON.parse(localStorage.getItem("watchedVideos"));
+  };
+
+  isElementExists = (element, storageItems) => {
+    if (storageItems) {
+      const idx = storageItems.findIndex(item => {
+        return item.id === element.id;
+      });
+      return idx != -1 ? true : false;
+    } else {
+      return false;
+    }
+  };
+
+  setItemsToLocalStorage = (newItem, prevItems = []) => {
+    localStorage.setItem(
+      "watchedVideos",
+      JSON.stringify([...prevItems, newItem])
+    );
+  };
+
   findVideoById = (videos, id) => {
     return videos.findIndex(item => {
       return item.id === id;
     });
   };
+
   render() {
     const {
       searchResults,
@@ -83,20 +90,25 @@ class MainPage extends Component {
       lang
     } = this.props;
 
-    const showResults = searchResults ? (
-      <SearchResults results={searchResults} playVideo={this.onPlayVideo} />
-    ) : null;
     return (
       <Fragment>
-        <Search onSearch={this.onSearch} />
-        <LanguagesDropdown activeLanguage={lang} />
-        {showResults}
-        <Sidebar
-          onPlayWatchedVideo={playVideo}
-          removeWatchedVideo={this.removeWatchedVideo}
-          watchedVideos={watchedVideos}
+        <Header
+          results={searchResults}
+          playVideo={this.onPlayVideo}
+          activeLanguage={lang}
+          onSearch={this.onSearch}
         />
-        <VideoPlayer videoId={playVideoId} />
+        <div className="container">
+          <div className="content">
+            <Sidebar
+              onPlayWatchedVideo={playVideo}
+              removeWatchedVideo={this.removeWatchedVideo}
+              watchedVideos={watchedVideos}
+            />
+
+            <VideoPlayer videoId={playVideoId} />
+          </div>
+        </div>
       </Fragment>
     );
   }

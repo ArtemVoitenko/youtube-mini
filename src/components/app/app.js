@@ -1,11 +1,15 @@
 import React, { Fragment, Component } from "react";
 import MainPage from "../main-page";
 import { Route } from "react-router-dom";
-import { withTranslate } from "react-redux-multilingual";
-import LanguagesPage from "../LanguagesPage";
+import LanguagesPage from "../languages-page";
 import { withRouter } from "react-router-dom";
+import "../../../node_modules/normalize-scss/sass/normalize/_import-now.scss";
+import "../../styles/styles.scss";
 class App extends Component {
   componentDidMount() {
+    this.checkActiveLanguage();
+  }
+  checkActiveLanguage = () => {
     const activeLanguage = JSON.parse(localStorage.getItem("lang"));
     const { history } = this.props;
     if (!activeLanguage) {
@@ -15,9 +19,7 @@ class App extends Component {
     } else {
       history.push("/");
     }
-
-    console.log(activeLanguage);
-  }
+  };
   render() {
     return (
       <Fragment>
@@ -35,16 +37,10 @@ class App extends Component {
             return <MainPage lang="en" />;
           }}
         />
-        <Route
-          exact
-          path={"/langs"}
-          render={() => {
-            return <LanguagesPage />;
-          }}
-        />
+        <Route exact path={"/langs"} component={LanguagesPage} />
       </Fragment>
     );
   }
 }
 
-export default withTranslate(withRouter(App));
+export default withRouter(App);

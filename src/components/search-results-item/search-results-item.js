@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./search-results-item.scss";
 import { withTranslate } from "react-redux-multilingual";
 const SearchResultsItem = ({
   id,

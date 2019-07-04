@@ -1,5 +1,4 @@
 const initialState = {
-  test: "",
   searchResults: null,
   playVideoInfo: null,
   playVideoId: null,
@@ -8,11 +7,6 @@ const initialState = {
 };
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "TEST":
-      return {
-        ...state,
-        test: "test"
-      };
     case "VIDEOS_RETURNED": {
       return {
         ...state,

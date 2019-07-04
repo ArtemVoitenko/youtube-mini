@@ -1,0 +1,59 @@
+.languages {
+  position: relative;
+  &__button {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #3e3e3e;
+    border: none;
+    color: #757575;
+    border-radius: 4px;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:after {
+      content: "";
+      display: block;
+      margin-top: -7px;
+      margin-left: 15px;
+      width: 8px;
+      height: 8px;
+      border-bottom: 2px solid #757575;
+      border-left: 2px solid #757575;
+      transform: rotate(-45deg);
+      transition: 0.2s;
+    }
+    &.active {
+      &:after {
+        transform: rotate(135deg);
+        margin-top: 6px;
+      }
+    }
+  }
+  &__icon {
+    display: block;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  &__dropdown {
+    display: none;
+    margin-top: 10px;
+    position: absolute;
+    z-index: 2;
+    background-color: #3e3e3e;
+    width: 100%;
+    border-radius: 4px;
+    &.active {
+      display: block;
+    }
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    color: #757575;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+}

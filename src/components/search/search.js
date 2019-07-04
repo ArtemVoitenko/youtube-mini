@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { withTranslate } from "react-redux-multilingual";
 import { withYoutubeService } from "../hoc";
+import "./search.scss";
 class Search extends Component {
   state = {
     query: ""

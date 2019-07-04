@@ -1,0 +1,26 @@
+.video-player {
+  padding-bottom: 56.24%;
+
+  overflow: hidden;
+  position: relative;
+  &__wrapper {
+    flex-grow: 1;
+  }
+  &__iframe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+}
+@media (max-width: 1024px) {
+  .video-player {
+    &__wrapper {
+      margin-bottom: 20px;
+    }
+  }
+}

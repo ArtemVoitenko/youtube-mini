@@ -1,5 +1,6 @@
 import React from "react";
 import { withTranslate } from "react-redux-multilingual";
+import "./sidebar.scss";
 const Sidebar = ({
   removeWatchedVideo,
   onPlayWatchedVideo,
